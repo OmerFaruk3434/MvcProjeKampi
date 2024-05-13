@@ -56,6 +56,7 @@
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
     <Compile Include="Abstract\IHeadingDal.cs" />
+    <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfContentDal.cs" />
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
+    <Compile Include="EntityFramework\EfMessageDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202404301116389_mig1.cs" />
     <Compile Include="Migrations\202404301116389_mig1.Designer.cs">
@@ -95,6 +97,14 @@
     <Compile Include="Migrations\202405101300548_mig_headingstatusadd.cs" />
     <Compile Include="Migrations\202405101300548_mig_headingstatusadd.Designer.cs">
       <DependentUpon>202405101300548_mig_headingstatusadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405130906233_mig_add_message.cs" />
+    <Compile Include="Migrations\202405130906233_mig_add_message.Designer.cs">
+      <DependentUpon>202405130906233_mig_add_message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405131234215_mig_contactadddate.cs" />
+    <Compile Include="Migrations\202405131234215_mig_contactadddate.Designer.cs">
+      <DependentUpon>202405131234215_mig_contactadddate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405101300548_mig_headingstatusadd.resx">
       <DependentUpon>202405101300548_mig_headingstatusadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405130906233_mig_add_message.resx">
+      <DependentUpon>202405130906233_mig_add_message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405131234215_mig_contactadddate.resx">
+      <DependentUpon>202405131234215_mig_contactadddate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

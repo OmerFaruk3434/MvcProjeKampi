@@ -1,7 +1,6 @@
-﻿@model EntityLayer.Concrete.Contact
-
+﻿@model EntityLayer.Concrete.Message
 @{
-    ViewBag.Title = "GetContactDetails";
+    ViewBag.Title = "GetInBoxMessageDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -12,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>İletişim Sayfası Mesajları</h1>
+                    <h1>Gelen Mesaj Detayları</h1>
                 </div>
             </div>
         </div>
@@ -25,7 +24,7 @@
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">Gelen Mesaj Detayları</h3>
+                            <h3 class="card-title">Mesajı Oku</h3>
                             <div class="card-tools">
                                 <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
                                 <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
@@ -34,15 +33,16 @@
 
                         <div class="card-body p-0">
                             <div class="mailbox-read-info">
-                                <h5><b style="font-size:18px;color:black">Konu:&nbsp;</b> @Html.DisplayFor(x => x.Subject) </h5>
+                                <h5><b style="font-size:18px;color:black">Konu:</b> @Html.DisplayFor(x => x.Subject) </h5>
                                 <br />
                                 <h6>
-                                    <b style="font-size:18px;color:black">Mail:&nbsp;</b> @Html.DisplayFor(x => x.UserMail)
-                                <span class="mailbox-read-time float-right"></span>
+                                    <b style="font-size:18px;color:black">Mail:</b> @Html.DisplayFor(x => x.SenderMail)
+                                    <span class="mailbox-read-time float-right">@DateTime.Parse(@Html.DisplayFor(x => x.MessageDate).ToString()).ToShortDateString()</span>
                                 </h6>
                             </div>
+                            
                             <div class="mailbox-read-message">
-                                <b style="font-size:18px;color:black">Mesaj:&nbsp;</b>@Html.DisplayFor(x => x.Message)
+                                <p><b style="font-size:18px;color:black">Mesaj:&nbsp;</b>@Html.DisplayFor(x => x.MessageContent)</p>
                             </div>
                         </div>
                     </div>
