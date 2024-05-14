@@ -11,9 +11,11 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
+	
 	public class AdminCategoryController : Controller
 	{
 		CategoryManager cm = new CategoryManager(new EfCategoryDal());
+		[Authorize(Roles = "B")]
 		public ActionResult Index()
 		{
 			var categoryvalues = cm.GetList();
