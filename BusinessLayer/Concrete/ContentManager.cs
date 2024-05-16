@@ -16,11 +16,11 @@ namespace BusinessLayer.Concrete
 		public ContentManager(IContentDal contentDal)
 		{
 			_contentDal = contentDal;
-		}
+		} 
 
 		public void ContentAdd(Content content)
 		{
-			throw new NotImplementedException();
+			_contentDal.Insert(content);
 		}
 
 		public void ContentDelete(Content content)
@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
 		public List<Content> GetList()
 		{
-			throw new NotImplementedException();
+			return _contentDal.List();
 		}
 
 		public List<Content> GetListByHeadingID(int id)
