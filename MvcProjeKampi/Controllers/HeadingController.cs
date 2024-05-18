@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace MvcProjeKampi.Controllers
 		HeadingManager hm = new HeadingManager(new EfHeadingDal());
 		CategoryManager cm = new CategoryManager(new EfCategoryDal());
 		WriterManager wm = new WriterManager(new EfWriterDal());
-		public ActionResult Index()
+		public ActionResult Index(int p = 1)
 		{
-			var headingvalues = hm.GetList();
+			var headingvalues = hm.GetList().ToPagedList(p, 5);
 			return View(headingvalues);
 		}
 		public ActionResult HeadingReport()

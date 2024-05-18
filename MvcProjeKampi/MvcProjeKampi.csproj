@@ -143,9 +143,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
-    <Compile Include="Controllers\AdminCategoryController.cs" />
-    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -2847,16 +2846,11 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\GetCategoryList.cshtml" />
-    <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\AdminCategory\Index.cshtml" />
-    <Content Include="Views\AdminCategory\AddCategory.cshtml" />
-    <Content Include="Views\AdminCategory\EditCategory.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\Writer\Index.cshtml" />
     <Content Include="Views\Writer\AddWriter.cshtml" />
     <Content Include="Views\Writer\EditWriter.cshtml" />
@@ -2894,7 +2888,6 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\WriterPanel\AllHeading.cshtml" />
     <Content Include="Views\WriterPanelContent\AddContent.cshtml" />
-    <Content Include="Views\WriterPanelContent\ToDoList.cshtml" />
     <Content Include="Views\Content\GetAllContent.cshtml" />
     <Content Include="Views\Heading\HeadingReport.cshtml" />
     <Content Include="Views\Authorization\Index.cshtml" />

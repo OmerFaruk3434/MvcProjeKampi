@@ -41,9 +41,5 @@ namespace MvcProjeKampi.Controllers
 			cm.ContentAdd(p);
 			return RedirectToAction("MyContent");
 		}
-		public ActionResult ToDoList()
-		{
-			return View();
-		}
 	}
 }

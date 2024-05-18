@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace MvcProjeKampi.Controllers
 
 		WriterManager wm = new WriterManager(new EfWriterDal());
 		WriterValidator writervalidator = new WriterValidator();
-		public ActionResult Index()
+		public ActionResult Index(int p = 1)
 		{
-			var WriterValues = wm.GetList();
+			var WriterValues = wm.GetList().ToPagedList(p, 6);
 			return View(WriterValues);
 		}
 		[HttpGet]
@@ -68,6 +69,5 @@ namespace MvcProjeKampi.Controllers
 			}
 			return View();
 		}
-
 	}
 }
