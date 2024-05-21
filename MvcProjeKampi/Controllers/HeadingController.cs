@@ -72,7 +72,7 @@ namespace MvcProjeKampi.Controllers
 			hm.HeadingUpdate(p);
 			return RedirectToAction("Index");
 		}
-		public ActionResult DeleteHeading(int id)
+		public ActionResult StatusHeading(int id)
 		{
 			var HeadingValue = hm.GetByID(id);
 			if(HeadingValue.HeadingStatus == true)

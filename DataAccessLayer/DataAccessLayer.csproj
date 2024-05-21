@@ -122,6 +122,14 @@
     <Compile Include="Migrations\202405181058147_mig_heading.Designer.cs">
       <DependentUpon>202405181058147_mig_heading.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405211451315_mig_addGender.cs" />
+    <Compile Include="Migrations\202405211451315_mig_addGender.Designer.cs">
+      <DependentUpon>202405211451315_mig_addGender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405211501478_gender_data_Editbool.cs" />
+    <Compile Include="Migrations\202405211501478_gender_data_Editbool.Designer.cs">
+      <DependentUpon>202405211501478_gender_data_Editbool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -171,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405181058147_mig_heading.resx">
       <DependentUpon>202405181058147_mig_heading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405211451315_mig_addGender.resx">
+      <DependentUpon>202405211451315_mig_addGender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405211501478_gender_data_Editbool.resx">
+      <DependentUpon>202405211501478_gender_data_Editbool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

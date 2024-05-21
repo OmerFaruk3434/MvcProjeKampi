@@ -24,6 +24,8 @@ namespace EntityLayer.Concrete
         [StringLength(100)]
         public string WriterAbout {  get; set; }
 
+        public bool WriterGender { get; set; }
+
         [StringLength(200)]
         public string WriterMail { get; set; }
 

@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +16,12 @@ namespace MvcProjeKampi.Controllers
 	
 	public class CategoryController : Controller
 	{
+		Context db = new Context();
 		CategoryManager cm = new CategoryManager(new EfCategoryDal());
 		[Authorize(Roles = "B")]
-		public ActionResult Index()
+		public ActionResult Index(int p = 1)
 		{
-			var categoryvalues = cm.GetList();
+			var categoryvalues = cm.GetList().ToPagedList(p, 6);
 			return View(categoryvalues);
 		}
 		[HttpGet]
@@ -51,6 +54,20 @@ namespace MvcProjeKampi.Controllers
 			cm.CategoryDelete(categoryvalue);
 			return RedirectToAction("Index");
 		}
+		public ActionResult StatusCategory(int id)
+		{
+			var HeadingValue = cm.GetByID(id);
+			if (HeadingValue.CategoryStatus == false)
+			{
+				HeadingValue.CategoryStatus = true;
+			}
+			else
+			{
+				HeadingValue.CategoryStatus = false;
+			}
+			cm.CategoryUpdate(HeadingValue);
+			return RedirectToAction("Index");
+		}
 		[HttpGet]
 		public ActionResult EditCategory(int id)
 		{
@@ -62,6 +79,11 @@ namespace MvcProjeKampi.Controllers
 		{
 			cm.CategoryUpdate(p);
 			return RedirectToAction("Index");
+		}
+		public ActionResult CategoryContentDetail(int id)
+		{
+			var values = db.Contents.Where(x => x.Heading.CategoryID == id).ToList();
+			return View(values);
 		}
 	}
 }

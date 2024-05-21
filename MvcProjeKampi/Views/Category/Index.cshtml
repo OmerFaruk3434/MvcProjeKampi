@@ -1,30 +1,113 @@
 ﻿@using EntityLayer.Concrete
-@model List<Category>
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<br />
-<table class="table table-bordered">
-    <tr>
-        <th>Kategori Adı</th>
-        <th>Kategori Açıklaması</th>
-        <th>Kategori Durumu</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-        <th>Kategori Başlıkları</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.CategoryName</td>
-            <td>@item.CategoryDescription</td>
-            <td>@item.CategoryStatus</td>
-            <td><a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Category/EditCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
-            <td><a href="#" class="btn btn-primary">Başlıklar</a></td>
-        </tr>
-    }
-</table>
-<a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
-
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="col-sm-12 badge badge-dark">
+            <h1>Kategoriler Listesi</h1>
+            <a href="/Category/AddCategory" class="btn btn-info col-12">Kategori Ekle</a>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/Category" data-source-selector="#card-refresh-content" data-load-on-init="true"><i class="fas fa-sync-alt"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 8%">
+                                Kategori
+                            </th>
+                            <th style="width: 35%">
+                                Kategori Açıklama
+                            </th>
+                            <th style="width: 8%">
+                            </th>
+                            <th style="width: 10%">
+                                Durum
+                            </th>
+                            <th style="width: 10%">
+                            </th>
+                            <th style="width: 30%">
+                            </th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="border-bottom:groove">
+                                <td>
+                                    <span class="badge badge-warning">
+                                        <b>@item.CategoryName</b>
+                                    </span>
+                                </td>
+                                <td><b>@item.CategoryDescription</b></td>
+                                <td></td>
+                                <td>
+                                    @if (item.CategoryStatus == true)
+                                    {
+                                        <span class="badge badge-success">
+                                            <b>Aktif</b>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">
+                                            <b>Pasif</b>
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.CategoryStatus == true)
+                                    {
+                                        <a class="btn btn-outline-dark btn-sm" href="/Category/StatusCategory/@item.CategoryID">
+                                            <i class="fas fa-lock"></i>&nbsp;<b>Pasif Yap</b>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-success btn-sm" href="/Category/StatusCategory/@item.CategoryID">
+                                            <i class="fas fa-lock-open"></i>&nbsp;<b>Aktif Yap</b>
+                                        </a>
+                                    }
+                                </td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Category/CategoryContentDetail/@item.CategoryID">
+                                        <i class="fas fa-folder">
+                                        </i>&nbsp;<b>Yazılar</b>
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="/Category/EditCategory/@item.CategoryID">
+                                        <i class="fas fa-edit">
+                                        </i>&nbsp;<b>Düzenle</b>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="/Category/DeleteCategory/@item.CategoryID">
+                                        <i class="fas fa-trash">
+                                        </i>&nbsp;<b>Sil</b>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                </table>
+            </div>
+        </div>
+    </section>
+    <div style="display: flex; justify-content: center; margin-top: 7px;">
+        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
+           {
+               LiElementClasses = new List<string>
+               { "page-link"}
+           })
+    </div>
+    <br />
+</body>
+</html>

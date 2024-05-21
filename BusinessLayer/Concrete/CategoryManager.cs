@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.Repositories;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,6 @@ namespace BusinessLayer.Concrete
 		{
 			return _categorydal.Get(x => x.CategoryID == id);
 		}
-
 		public List<Category> GetList()
 		{
 			return _categorydal.List();
