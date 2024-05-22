@@ -71,28 +71,28 @@
                                     @if (item.CategoryStatus == true)
                                     {
                                         <a class="btn btn-outline-dark btn-sm" href="/Category/StatusCategory/@item.CategoryID">
-                                            <i class="fas fa-lock"></i>&nbsp;<b>Pasif Yap</b>
+                                            <i style="font-size:15px" class="fas fa-lock"></i>&nbsp;<b>Pasif Yap</b>
                                         </a>
                                     }
                                     else
                                     {
                                         <a class="btn btn-success btn-sm" href="/Category/StatusCategory/@item.CategoryID">
-                                            <i class="fas fa-lock-open"></i>&nbsp;<b>Aktif Yap</b>
+                                            <i style="font-size:15px" class="fas fa-lock-open"></i>&nbsp;<b>Aktif Yap</b>
                                         </a>
                                     }
                                 </td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="/Category/CategoryContentDetail/@item.CategoryID">
+                                    <a style="font-size:15px;" class="badge bg-primary" href="/Category/CategoryContentDetail/@item.CategoryID">
                                         <i class="fas fa-folder">
-                                        </i>&nbsp;<b>Yazılar</b>
+                                        </i>&nbsp;Yazılar
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="/Category/EditCategory/@item.CategoryID">
+                                    <a style="font-size:15px;" class="badge bg-gray" href="/Category/EditCategory/@item.CategoryID">
                                         <i class="fas fa-edit">
-                                        </i>&nbsp;<b>Düzenle</b>
+                                        </i>&nbsp;Düzenle
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/Category/DeleteCategory/@item.CategoryID">
+                                    <a style="font-size:15px" class="badge bg-danger" href="/Category/DeleteCategory/@item.CategoryID">
                                         <i class="fas fa-trash">
-                                        </i>&nbsp;<b>Sil</b>
+                                        </i>&nbsp;Sil
                                     </a>
                                 </td>
                             </tr>

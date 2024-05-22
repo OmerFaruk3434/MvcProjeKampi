@@ -4,14 +4,45 @@
     ViewBag.Title = "GetAllContent";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@using (Html.BeginForm("GetAllContent", "Content", FormMethod.Post))
-{
-    <p>
-        Aranacak Kelimeyi Girin: @Html.TextBox("p")
-        <input type="submit" value="Ara" />
-    </p>
-}
-@foreach (var item in Model)
-{
-    <p>@item.ContentValue</p>
-}
+<body class="hold-transition sidebar-mini">
+    @using (Html.BeginForm("GetAllContent", "Content", FormMethod.Post))
+    {
+        <p>
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" name="p" type="search" placeholder="Ara" aria-label="Ara">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div><br />
+            <div class="wrapper">
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="timeline">
+                                    @foreach (var item in Model.OrderByDescending((x => x.ContentDate)))
+                                    {
+                                        <div class="time-label">
+                                            <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy")) - @item.Writer.WriterName @item.Writer.WriterSurName</span>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-comment bg-yellow"></i>
+                                            <div class="timeline-item">
+                                                <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName</a></h3>
+                                                <div class="timeline-body">
+                                                    @item.ContentValue
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </p>
+    }
+</body>

@@ -16,7 +16,7 @@ namespace MvcProjeKampi.Controllers
 	
 	public class CategoryController : Controller
 	{
-		Context db = new Context();
+		ContentManager contentManager = new ContentManager(new EfContentDal());
 		CategoryManager cm = new CategoryManager(new EfCategoryDal());
 		[Authorize(Roles = "B")]
 		public ActionResult Index(int p = 1)
@@ -82,7 +82,7 @@ namespace MvcProjeKampi.Controllers
 		}
 		public ActionResult CategoryContentDetail(int id)
 		{
-			var values = db.Contents.Where(x => x.Heading.CategoryID == id).ToList();
+			var values = contentManager.CategoryList(id);
 			return View(values);
 		}
 	}
