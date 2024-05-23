@@ -42,6 +42,10 @@ namespace BusinessLayer.Concrete
 		{
 			return _contentDal.List(x => x.ContentValue.Contains(p));
 		}
+		public List<Content> GetAllList()
+		{
+			return _contentDal.List();
+		}
 		public List<Content> CategoryList(int id)
 		{
 			return _contentDal.List(x => x.Heading.CategoryID == id).ToList();
