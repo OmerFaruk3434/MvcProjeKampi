@@ -12,7 +12,7 @@
     <section class="content">
         <div class="col-sm-12 badge badge-dark">
             <h1>Başlıklar Listesi</h1>
-            <a href="/Heading/AddHeading" class="btn btn-info col-12">Başlık Ekle</a>
+            <a href="/Heading/AddHeading" class="btn btn-info col-6">Başlık Ekle</a>
         </div>
         <div class="card">
             <div class="card-header">
@@ -135,7 +135,7 @@
         @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
            {
                LiElementClasses = new List<string>
-               { "page-link"}
+               { "page-item"}
            })
     </div>
     <br />

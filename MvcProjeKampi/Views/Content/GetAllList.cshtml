@@ -1,51 +1,55 @@
 ﻿@using EntityLayer.Concrete
 @using PagedList;
 @using PagedList.Mvc;
-@model PagedList.IPagedList<Content>
+@model IPagedList<Content>
 @{
-    ViewBag.Title = "GetAllContent";
+    ViewBag.Title = "Tüm İçerikler";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<body class="hold-transition sidebar-mini">
-    @using (Html.BeginForm("GetAllContent", "Content", FormMethod.Post))
+<br />
+<body class="hold-transition sidebar-mini layout-fixed">
+    @using (Html.BeginForm("GetAllContent", "Content", FormMethod.Get, new { @class = "search-form" }))
     {
-        <p>
-            <div class="fixed-search-bar">
-                <div class="input-group input-group-sm">
-                    <input style="border: 3px solid #00B4CC;" class="col-md-8 container form-control" name="p" type="search" placeholder="Ara" aria-label="Ara">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
+        <div class="search-container content container-fluid">
+            <form class="search-form" action="@Url.Action("GetAllContent", "Content")" method="get">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group stylish-input-group">
+                            <input style=" border: 2px solid #79b8c9; border-radius: 15px; padding: 5px;" type="text" class="form-control" placeholder="Ara..." name="p">
+                            <button style="border: 2px; border-radius:12px;padding: 8px;" type="submit">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="wrapper">
-                <section class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
+            </form>
+        </div><br />
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-line-primary">
+
+                            <div class="card-body">
                                 <div class="timeline">
-                                    @foreach (var item in Model.OrderByDescending((x => x.ContentDate)))
+                                    @foreach (var item in Model.OrderByDescending(x => x.ContentDate))
                                     {
                                         <div class="time-label">
-                                            <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy")) - @item.Heading.Category.CategoryName</span>
+                                            <span class="bg-purple">@(((DateTime)item.ContentDate).ToString("dd MMM yyyy"))</span>
+                                            <span class="bg-orange">@item.Heading.Category.CategoryName</span>
                                         </div>
-                                        if (item.Writer.WriterGender == true)
-                                        {
-                                            <div class="time-label">
-                                                <span class="bg-blue"> @item.Writer.WriterName @item.Writer.WriterSurName</span>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="time-label">
-                                                <span class="bg-pink"> @item.Writer.WriterName @item.Writer.WriterSurName</span>
-                                            </div>
-                                        }
                                         <div>
-                                            <i class="fas fa-comment bg-yellow"></i>
+                                            <img style=" border-radius: 100%; height: 60px; width: 60px; object-fit: cover;" alt="Avatar"
+                                                 class="table-avatar" src="@item.Writer.WriterImage">&nbsp;&nbsp;
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><b style="color:deepskyblue">@item.Heading.HeadingName</b></h3>
+                                                @if (item.Writer.WriterGender == true)
+                                                {
+                                                    <h3 style="color:blue" class="timeline-header"><a>@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+                                                }
+                                                else
+                                                {
+                                                    <h3 style="color:deeppink" class="timeline-header"><a>@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+                                                }
                                                 <div class="timeline-body">
                                                     @item.ContentValue
                                                 </div>
@@ -56,15 +60,15 @@
                             </div>
                         </div>
                     </div>
-                </section>
-                <div style="display: flex; justify-content: center; margin-top: 7px;">
-                    @Html.PagedListPager((IPagedList)Model, p => Url.Action("GetAllList", new { p }), new PagedListRenderOptions
-                       {
-                           LiElementClasses = new List<string>
-                           { "page-link"}
-                       })
                 </div>
             </div>
-        </p>
+        </section>
+        <div style="display: flex; justify-content: center; margin-top: 7px;">
+            @Html.PagedListPager((IPagedList)Model, p => Url.Action("GetAllList", new { p }), new PagedListRenderOptions
+               {
+                   LiElementClasses = new List<string>
+                   { "page-item"}
+               })
+        </div>
     }
 </body>
