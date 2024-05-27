@@ -1,7 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@using PagedList;
-@using PagedList.Mvc;
-@model PagedList.IPagedList<Heading>
+@model List<Heading>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -17,14 +15,14 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/Category" data-source-selector="#card-refresh-content" data-load-on-init="true"><i class="fas fa-sync-alt"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/Heading" data-source-selector="#card-refresh-content" data-load-on-init="true"><i class="fas fa-sync-alt"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                 </div>
-            </div>
+            </div><br />
             <div class="card-body p-0">
-                <table class="table table-striped projects">
+                <table id="headingTable" class="table table-striped projects">
                     <thead>
                         <tr>
                             <th style="width: 8%">
@@ -46,98 +44,92 @@
                             <th style="width: 30%">
                             </th>
                         </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr style="border-bottom:groove">
-                                <td>
-                                    <span class="badge bg-yellow">
-                                        <b>@item.Category.CategoryName</b>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="border-bottom:groove">
+                            <td>
+                                <span class="badge bg-yellow">
+                                    <b>@item.Category.CategoryName</b>
+                                </span>
+                            </td>
+                            <td>
+                                <a>
+                                    <b>@item.HeadingName</b>
+                                </a>
+                                <br />
+                                <small>
+                                    @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                </small>
+                            </td>
+                            <td>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <img style=" border-radius: 50%; height: 60px; width: 60px; object-fit: cover;" alt="Avatar"
+                                             class="table-avatar" src="@item.Writer.WriterImage">&nbsp;&nbsp;
+                                        @if (item.Writer.WriterGender == true)
+                                        {
+                                            <b class="badge bg-gradient-blue">@item.Writer.WriterName @item.Writer.WriterSurName</b>
+                                        }
+                                        else
+                                        {
+                                            <b class="badge bg-gradient-pink">@item.Writer.WriterName @item.Writer.WriterSurName</b>
+                                        }
+                                    </li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td>
+                                @if (item.HeadingStatus == true)
+                                {
+                                    <span class="badge badge-success">
+                                        Aktif
                                     </span>
-                                </td>
-                                <td>
-                                    <a>
-                                        <b>@item.HeadingName</b>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger">
+                                        Pasif
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.HeadingStatus == true)
+                                {
+                                    <a class="btn btn-outline-dark btn-sm" href="/Heading/StatusHeading/@item.HeadingID">
+                                        <i class="fas fa-lock"></i>&nbsp;<b>Pasif Yap</b>
                                     </a>
-                                    <br />
-                                    <small>
-                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
-                                    </small>
-                                </td>
-                                <td>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <img style=" border-radius: 50%; height: 60px; width: 60px; object-fit: cover;" alt="Avatar"
-                                                 class="table-avatar" src="@item.Writer.WriterImage">&nbsp;&nbsp;
-                                            @if (item.Writer.WriterGender == true)
-                                            {
-                                                <b class="badge bg-gradient-blue">@item.Writer.WriterName @item.Writer.WriterSurName</b>
-                                            }
-                                            else
-                                            {
-                                                <b class="badge bg-gradient-pink">@item.Writer.WriterName @item.Writer.WriterSurName</b>
-                                            }
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td></td>
-                                <td>
-                                    @if (item.HeadingStatus == true)
-                                    {
-                                        <span class="badge badge-success">
-                                            Aktif
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge badge-danger">
-                                            Pasif
-                                        </span>
-                                    }
-                                </td>
-                                <td>
-                                    @if (item.HeadingStatus == true)
-                                    {
-                                        <a class="btn btn-outline-dark btn-sm" href="/Heading/StatusHeading/@item.HeadingID">
-                                            <i class="fas fa-lock"></i>&nbsp;<b>Pasif Yap</b>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-success btn-sm" href="/Heading/StatusHeading/@item.HeadingID">
-                                            <i class="fas fa-lock-open"></i>&nbsp;<b>Aktif Yap</b>
-                                        </a>
-                                    }
-                                </td>
-                                <td class="project-actions text-right">
-                                    <a style="font-size:15px;" class="badge bg-primary" href="/Content/ContentByHeading/@item.HeadingID">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        Yazılar
+                                }
+                                else
+                                {
+                                    <a class="btn btn-success btn-sm" href="/Heading/StatusHeading/@item.HeadingID">
+                                        <i class="fas fa-lock-open"></i>&nbsp;<b>Aktif Yap</b>
                                     </a>
-                                    <a style="font-size:15px;" class="badge bg-gray" href="/Heading/EditHeading/@item.HeadingID">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Düzenle
-                                    </a>
-                                    <a style="font-size:15px;" class="badge bg-danger" href="/Heading/DeleteHeading/@item.HeadingID">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Sil
-                                    </a>
-                                </td>
-                            </tr>
-                        }
+                                }
+                            </td>
+                            <td class="project-actions text-right">
+                                <a style="font-size:15px;" class="badge bg-primary" href="/Content/ContentByHeading/@item.HeadingID">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    Yazılar
+                                </a>
+                                <a style="font-size:15px;" class="badge bg-gray" href="/Heading/EditHeading/@item.HeadingID">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Düzenle
+                                </a>
+                                <a style="font-size:15px;" class="badge bg-danger" href="/Heading/DeleteHeading/@item.HeadingID">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>
     </section>
-    <div style="display: flex; justify-content: center; margin-top: 7px;">
-        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
-           {
-               LiElementClasses = new List<string>
-               { "page-item"}
-           })
-    </div>
     <br />
 </body>
 </html>

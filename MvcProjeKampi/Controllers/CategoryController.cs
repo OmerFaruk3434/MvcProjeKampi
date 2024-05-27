@@ -19,9 +19,9 @@ namespace MvcProjeKampi.Controllers
 		ContentManager contentManager = new ContentManager(new EfContentDal());
 		CategoryManager cm = new CategoryManager(new EfCategoryDal());
 		[Authorize(Roles = "B")]
-		public ActionResult Index(int p = 1)
+		public ActionResult Index()
 		{
-			var categoryvalues = cm.GetList().ToPagedList(p, 6);
+			var categoryvalues = cm.GetList();
 			return View(categoryvalues);
 		}
 		[HttpGet]

@@ -25,6 +25,7 @@ namespace MvcProjeKampi.Controllers
 			{
 				c.Contents.ToList();
 			}
+			
 			var values = cm.GetList(p).ToPagedList(d, 10);
 			return View("GetAllList",values);
 		}

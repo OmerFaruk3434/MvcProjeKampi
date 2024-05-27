@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 @{
     Layout = null;
 }
@@ -17,6 +17,10 @@
     <link href="~/Content/PagedList.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.jqueryui.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -279,6 +283,8 @@
             <div class="content">
                 @RenderBody()
             </div>
+            @RenderSection("scripts", required: false)
+
         </div>
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
@@ -291,5 +297,45 @@
     <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
     <script src="~/AdminLTE-3.0.4/plugins/sweetalert2/sweetalert2.min.js"></script>
     <script src="~/AdminLTE-3.0.4/plugins/toastr/toastr.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#categoryTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Turkish.json"
+                },
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": true,
+                "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+                "lengthMenu": [[6, 10, 25, 50, -1], [10, 25, 50, "Tümü"]]
+            });
+        });
+        $(document).ready(function () {
+            $('#headingTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Turkish.json"
+                },
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": true,
+                "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+                "lengthMenu": [[5, 10, 25, 50, -1], [10, 25, 50, "Tümü"]]
+            });
+        });
+
+    </script>
 </body>
 </html>
