@@ -2922,7 +2922,6 @@
     <Content Include="Views\Writer\EditWriter.cshtml" />
     <Content Include="Views\Heading\Index.cshtml" />
     <Content Include="Views\Heading\AddHeading.cshtml" />
-    <Content Include="Views\Content\ContentByHeading.cshtml" />
     <Content Include="Views\Heading\EditHeading.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\About\AboutPartial.cshtml" />
@@ -2958,9 +2957,11 @@
     <Content Include="Views\Authorization\AddAdmin.cshtml" />
     <Content Include="Views\Authorization\EditAdmin.cshtml" />
     <Content Include="Views\Category\CategoryContentDetail.cshtml" />
-    <Content Include="Views\Content\GetAllList.cshtml" />
     <Content Include="Views\Shared\_WriterLayout.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Writer\WriterPartialView.cshtml" />
+    <Content Include="Views\Content\Index.cshtml" />
+    <Content Include="Views\Content\GetAllListPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

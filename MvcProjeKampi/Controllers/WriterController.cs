@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -17,10 +18,22 @@ namespace MvcProjeKampi.Controllers
 
 		WriterManager wm = new WriterManager(new EfWriterDal());
 		WriterValidator writervalidator = new WriterValidator();
-		public ActionResult Index(int p = 1)
+		public ActionResult Index(int? p)
 		{
-			var WriterValues = wm.GetList().ToPagedList(p, 6);
-			return View(WriterValues);
+			int pageNumber = p ?? 1;
+			int pageSize = 6;
+
+			var writers = wm.GetList().OrderBy(w => w.WriterID).ToPagedList(pageNumber, pageSize);
+			if (Request.IsAjaxRequest())
+			{
+				return PartialView("WriterPartialView", writers);
+			}
+
+			return View(writers);
+		}
+		public PartialViewResult WriterPartialView()
+		{
+			return PartialView();
 		}
 		[HttpGet]
 		public ActionResult AddWriter()

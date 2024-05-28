@@ -1,0 +1,28 @@
+﻿@using EntityLayer.Concrete
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Content>
+@{
+    ViewBag.Title = "Tüm İçerikler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<div id="Get-All-list-container">
+    @Html.Partial("GetAllListPartialView", Model)
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).on("click", ".pagination a", function (event) {
+        event.preventDefault();
+        var page = $(this).attr("href").split("p=")[1];
+        $.ajax({
+            url: '/Content/Index',
+            data: { p: page },
+            type: "GET",
+            success: function (result) {
+                $("#Get-All-list-container").html(result);
+            }
+        });
+    });
+</script>
+

@@ -12,32 +12,24 @@ namespace MvcProjeKampi.Controllers
 {
 	public class ContentController : Controller
 	{
-		Context c = new Context();
 		// GET: Content
 		ContentManager cm = new ContentManager(new EfContentDal());
-		public ActionResult Index()
+		public ActionResult Index(int? p)
 		{
-			return View();
-		}
-		public ActionResult GetAllContent(string p , int d = 1)
-		{
-			if (string.IsNullOrEmpty(p))
+			int pageNumber = p ?? 1;
+			int pageSize = 10;
+
+			var writers = cm.GetAllList().OrderBy(w => w.ContentID).ToPagedList(pageNumber, pageSize);
+			if (Request.IsAjaxRequest())
 			{
-				c.Contents.ToList();
+				return PartialView("GetAllListPartialView", writers);
 			}
-			
-			var values = cm.GetList(p).ToPagedList(d, 10);
-			return View("GetAllList",values);
+
+			return View(writers);
 		}
-		public ActionResult GetAllList(int p = 1)
+		public PartialViewResult GetAllListPartialView()
 		{
-			var values = cm.GetAllList().ToPagedList(p, 10);
-			return View(values);
-		}
-		public ActionResult ContentByHeading(int id)
-		{
-			var contentvalues = cm.GetListByHeadingID(id);
-			return View(contentvalues);
+			return PartialView();
 		}
 	}
 }

@@ -1,0 +1,53 @@
+﻿@using EntityLayer.Concrete
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Content>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-line-primary">
+                        <div class="card-body">
+                            <div class="timeline">
+                                @foreach (var item in Model.OrderByDescending(x => x.ContentDate))
+                                {
+                                    <div class="time-label">
+                                        <span class="bg-purple">@(((DateTime)item.ContentDate).ToString("dd MMM yyyy"))</span>
+                                        <span class="bg-orange">@item.Heading.Category.CategoryName</span>
+                                    </div>
+                                    <div>
+                                        <img style=" border-radius: 100%; height: 60px; width: 60px; object-fit: cover;" alt="Avatar"
+                                             class="table-avatar" src="@item.Writer.WriterImage">&nbsp;&nbsp;
+                                        <div class="timeline-item">
+                                            @if (item.Writer.WriterGender == true)
+                                            {
+                                                <h3 style="color:blue" class="timeline-header"><a>@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+                                            }
+                                            else
+                                            {
+                                                <h3 style="color:deeppink" class="timeline-header"><a>@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
+                                            }
+                                            <div class="timeline-body">
+                                                @item.ContentValue
+                                            </div>
+                                        </div>
+                                    </div><br />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="display: flex; justify-content: center; margin-top: 1px;">
+        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
+        {
+            LiElementClasses = new List<string> { "page-item" },
+            UlElementClasses = new List<string> { "pagination" },
+            ContainerDivClasses = new List<string> { "pager-container" }
+        })
+    </div>
+</body>
