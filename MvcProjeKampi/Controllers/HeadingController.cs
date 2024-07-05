@@ -75,7 +75,7 @@ namespace MvcProjeKampi.Controllers
 		public ActionResult StatusHeading(int id)
 		{
 			var HeadingValue = hm.GetByID(id);
-			if(HeadingValue.HeadingStatus == true)
+			if (HeadingValue.HeadingStatus == true)
 			{
 				HeadingValue.HeadingStatus = false;
 			}
@@ -92,6 +92,5 @@ namespace MvcProjeKampi.Controllers
 			hm.HeadingDelete(categoryvalue);
 			return RedirectToAction("Index");
 		}
-
 	}
 }

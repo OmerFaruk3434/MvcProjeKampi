@@ -21,14 +21,7 @@
                                         <img style=" border-radius: 100%; height: 60px; width: 60px; object-fit: cover;" alt="Avatar"
                                              class="table-avatar" src="@item.Writer.WriterImage">&nbsp;&nbsp;
                                         <div class="timeline-item">
-                                            @if (item.Writer.WriterGender == true)
-                                            {
-                                                <h3 style="color:blue" class="timeline-header"><a>@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
-                                            }
-                                            else
-                                            {
-                                                <h3 style="color:deeppink" class="timeline-header"><a>@item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
-                                            }
+                                            <h3 style="color:black" class="timeline-header"><a><b>@item.Heading.HeadingName</b></a></h3>
                                             <div class="timeline-body">
                                                 @item.ContentValue
                                             </div>

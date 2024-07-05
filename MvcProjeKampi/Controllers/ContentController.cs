@@ -29,7 +29,8 @@ namespace MvcProjeKampi.Controllers
 		}
 		public PartialViewResult GetAllListPartialView()
 		{
-			return PartialView();
+			var contentList = cm.GetAllList();
+			return PartialView(contentList);
 		}
 	}
 }
