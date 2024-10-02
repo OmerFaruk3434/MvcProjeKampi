@@ -1,0 +1,47 @@
+﻿<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+            {
+                <p style="color:red">@ViewBag.ErrorMessage</p>
+                <div class="modal-body">
+                    <div class="login px-4 mx-auto mw-100">
+                        <h5 class="text-center mb-4">Şimdi Kaydol</h5>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label>Ad</label>
+                                <input type="text" name="WriterName" class="form-control" id="validationDefault01" placeholder="İsim" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Soyad</label>
+                                <input type="text" name="WriterSurName" class="form-control" id="validationDefault02" placeholder="Soyisim" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>E-Posta</label>
+                                <input type="email" name="WriterMail" class="form-control" id="validationDefault03" placeholder="E-Posta" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Şifre</label>
+                                <input type="password" name="WriterPassword" class="form-control" id="password1" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Şifreyi Onayla</label>
+                                <input type="password" name="VerifyPassword" class="form-control" id="password2" placeholder="" required="">
+                            </div>
+                            <button type="submit" class="btn btn-primary submit mb-4">Kaydol</button>
+                            @*<p class="text-center pb-4">
+                                    <a href="#">By clicking Register, I agree to your terms</a>
+                                </p>*@
+                        </form>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

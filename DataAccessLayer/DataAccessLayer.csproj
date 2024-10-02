@@ -74,6 +74,14 @@
     <Compile Include="EntityFramework\EfMessageDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="EntityFramework\EfImageFileDal.cs" />
+    <Compile Include="Migrations\WriterGender.cs" />
+    <Compile Include="Migrations\WriterGender.Designer.cs">
+      <DependentUpon>WriterGender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\WriterPhoneNumber.cs" />
+    <Compile Include="Migrations\WriterPhoneNumber.Designer.cs">
+      <DependentUpon>WriterPhoneNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,7 +95,14 @@
       <Name>EntityLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\WriterGender.resx">
+      <DependentUpon>WriterGender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\WriterPhoneNumber.resx">
+      <DependentUpon>WriterPhoneNumber.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

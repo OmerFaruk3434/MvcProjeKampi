@@ -67,11 +67,11 @@
                                     <li class="list-inline-item">
                                         <img style=" border-radius: 50%; height: 60px; width: 60px; object-fit: cover;" alt="Avatar"
                                              class="table-avatar" src="@item.Writer.WriterImage">&nbsp;&nbsp;
-                                        @if (item.Writer.WriterGender == true)
+                                        @if (item.Writer.WriterGender == "Erkek")
                                         {
                                             <b class="badge bg-gradient-blue">@item.Writer.WriterName @item.Writer.WriterSurName</b>
                                         }
-                                        else
+                                        @if (item.Writer.WriterGender == "Kadın")
                                         {
                                             <b class="badge bg-gradient-pink">@item.Writer.WriterName @item.Writer.WriterSurName</b>
                                         }

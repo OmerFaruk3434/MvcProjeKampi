@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,28 @@ namespace BusinessLayer.Concrete
 
 		public void WriterUpdate(Writer writer)
 		{
+			if (string.IsNullOrEmpty(writer.WriterPassword))
+			{
+				Writer existingWriter = GetByID(writer.WriterID);
+				if (existingWriter != null)
+				{
+					writer.WriterPassword = existingWriter.WriterPassword;
+				}
+			}
+			else if (!string.IsNullOrEmpty(writer.WriterPassword))
+			{
+				using (SHA512 sha512Hash = SHA512.Create())
+				{
+					byte[] bytes = sha512Hash.ComputeHash(Encoding.UTF8.GetBytes(writer.WriterPassword));
+					StringBuilder builder = new StringBuilder();
+					for (int i = 0; i < bytes.Length; i++)
+					{
+						builder.Append(bytes[i].ToString("x2"));
+					}
+					string hashedPassword = builder.ToString();
+					writer.WriterPassword = hashedPassword;
+				}
+			}
 			_writerDal.Update(writer);
 		}
 	}

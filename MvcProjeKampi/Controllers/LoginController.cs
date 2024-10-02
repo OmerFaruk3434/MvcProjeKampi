@@ -15,17 +15,19 @@ namespace MvcProjeKampi.Controllers
 	public class LoginController : Controller
 	{
 		WriterLoginManager wm = new WriterLoginManager(new EfWriterDal());
+		AdminManager am = new AdminManager(new EfAdminDal());
+
 		// GET: Login
 		[HttpGet]
 		public ActionResult Index()
 		{
 			return View();
 		}
+
 		[HttpPost]
 		public ActionResult Index(Admin p)
 		{
-			Context c = new Context();
-			var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
+			var adminuserinfo = am.GetByUser(p);
 			if (adminuserinfo != null)
 			{
 				FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
@@ -42,12 +44,11 @@ namespace MvcProjeKampi.Controllers
 		{
 			return View();
 		}
+
 		[HttpPost]
 		public ActionResult WriterLogin(Writer p)
 		{
-			//Context c = new Context();
-			//var writeruserinfo = c.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
-			var writeruserinfo = wm.GetWriter(p.WriterMail, p.WriterPassword);
+			var writeruserinfo = wm.GetWriter(p.WriterMail, p.WriterID, p.WriterPassword);
 			if (writeruserinfo != null)
 			{
 				FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);
@@ -59,11 +60,27 @@ namespace MvcProjeKampi.Controllers
 				return RedirectToAction("WriterLogin");
 			}
 		}
+
+		[HttpPost]
+		public ActionResult Register(Writer p)
+		{
+			if (wm.GetByMail(p.WriterMail) != null)
+			{
+				ViewBag.ErrorMessage = "Bu mail adresi ile daha önce kayıt olunmuş.";
+			}
+			else
+			{
+				wm.WriterAdd(p);
+			}
+			ModelState.Clear();
+			return RedirectToAction("WriterLogin");
+		}
+
 		public ActionResult LogOut()
 		{
 			FormsAuthentication.SignOut();
 			Session.Abandon();
-			return RedirectToAction("Headings", "Default");
+			return RedirectToAction("WriterLogin", "Login");
 		}
 	}
 }

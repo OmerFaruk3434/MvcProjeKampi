@@ -13,5 +13,9 @@ namespace MvcProjeKampi.Controllers
 		{
 			return View();
 		}
+		public PartialViewResult RegisterFormPartialView()
+		{
+			return PartialView();
+		}
 	}
 }

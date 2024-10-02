@@ -1,11 +1,13 @@
 ﻿using DataAccessLayer.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace DataAccessLayer.Concrete.Repositories
 {
@@ -14,11 +16,11 @@ namespace DataAccessLayer.Concrete.Repositories
 		Context c = new Context();
 		DbSet<T> _object;
 
-        public GenericRepository()
-        {
+		public GenericRepository()
+		{
 			_object = c.Set<T>();
-        }
-        public void Delete(T p)
+		}
+		public void Delete(T p)
 		{
 			var deletedEntity = c.Entry(p);
 			deletedEntity.State = EntityState.Deleted;
@@ -48,11 +50,35 @@ namespace DataAccessLayer.Concrete.Repositories
 		{
 			return _object.Where(filter).ToList();
 		}
-
 		public void Update(T p)
 		{
-			var updatedEntity = c.Entry(p);
-			updatedEntity.State = EntityState.Modified;
+			var keyProperty = typeof(T).GetProperties()
+				.FirstOrDefault(prop => prop.Name.Equals("Id", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "ID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "ContactID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "AboutID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "AdminID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "CategoryID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "ContentID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "HeadingID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "ImageID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "WriterID", StringComparison.OrdinalIgnoreCase)
+				|| prop.Name.Equals(typeof(T).Name + "MigrationId", StringComparison.OrdinalIgnoreCase)
+			);
+			if (keyProperty == null)
+			{
+				throw new Exception("Primary key property not found.");
+			}
+			var primaryKeyValue = keyProperty.GetValue(p);
+			var existingEntity = _object.Find(primaryKeyValue);
+			if (existingEntity != null)
+			{
+				c.Entry(existingEntity).CurrentValues.SetValues(p);
+			}
+			else
+			{
+				_object.Add(p);
+			}
 			c.SaveChanges();
 		}
 	}

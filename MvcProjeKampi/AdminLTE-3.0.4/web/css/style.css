@@ -159,7 +159,6 @@ ul.nav-honey {
 div#word-mark h1 a {
     color: #fff;
     font-size: 1em;
-    text-transform: uppercase;
     font-weight: 600;
     line-height: 0;
     letter-spacing: 1px;
@@ -190,7 +189,7 @@ div#word-mark h1 a {
     font-weight: 400;
     line-height: 28px;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     padding: 0.5em;
 }
 
@@ -340,7 +339,7 @@ a.btn.work.active {
 h4.sub-tittle-w3 {
     font-size: 0.85em;
     color: #037ef3;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 400;
     letter-spacing: 4px;
 }
@@ -357,7 +356,7 @@ h3.tittle-w3 {
 h4.progress-tittle-w3 {
     color: #4f4f50;
     font-size: 0.85em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 600;
     margin-bottom: 1em;
 }
@@ -418,7 +417,7 @@ h4.progress-tittle-w3 {
     color: #007bff;
     background-color: #fff;
     font-weight: 400;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 0.9em;
     margin: 0 0.5em;
     border-radius: 25px;
@@ -463,7 +462,7 @@ p.sub-meta {
     color: #4e4f50;
     text-shadow: 0 1px 2px rgba(18, 18, 19, 0.13);
     font-weight: 700;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .text-info-sec i {
@@ -493,7 +492,7 @@ p.sub-meta {
 
 .stats_info h4 {
     font-size: 0.85em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 600;
     margin-bottom: 1em;
 }
@@ -568,7 +567,7 @@ p.sub-meta {
     position: relative;
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .proj_gallery_grid1_pos p {
@@ -597,7 +596,7 @@ p.quia {
     font-weight: 600;
     text-align: center;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .proj_gallery_grid img {
@@ -649,7 +648,7 @@ p.quia {
     margin: 1em 0 0em 0;
     color: #333;
     font-size: 0.9em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .testimonials_grid h3 span {
@@ -662,7 +661,7 @@ p.quia {
     font-size: 0.7em;
     letter-spacing: 1px;
     color: #037ef3;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .testimonials_grid p {
@@ -730,7 +729,7 @@ a.carousel-control-prev.test {
 
 .address-right h6 {
     color: #fff;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 400;
     font-size: 0.9em;
     letter-spacing: 2px;
@@ -746,7 +745,7 @@ a.carousel-control-prev.test {
 }
 
 p.sub {
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     letter-spacing: 5px;
     font-size: 0.8em;
 }
@@ -756,7 +755,7 @@ p.sub {
     letter-spacing: 2px;
     font-size: 0.8em;
     font-weight: 600;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .contact_grid_right input[type="text"],
@@ -787,7 +786,7 @@ p.sub {
     background: #037ef3;
     border: none;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
@@ -870,7 +869,7 @@ p.sub {
 .login h5 {
     font-size: 1.2em;
     color: #333;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 600;
 }
 
@@ -879,7 +878,7 @@ p.sub {
     padding: 0.9em 2em;
     letter-spacing: 1px;
     border: none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 0.9em;
     margin-top: 1em;
     border-radius: 25px;
@@ -902,7 +901,7 @@ p.sub {
     color: #5a5757;
     font-size: 0.8em;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .video iframe {
@@ -978,7 +977,7 @@ p.sub {
 .footer-end-grid h2 a {
     color: #333;
     font-size: 1.2em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 900;
     line-height: 0;
     letter-spacing: 1px;
@@ -1005,7 +1004,7 @@ p.sub {
 ul.list-footer li a {
     color: #888;
     font-size: 0.9em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     letter-spacing: 1px;
 }
 

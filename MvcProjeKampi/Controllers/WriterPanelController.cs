@@ -11,6 +11,7 @@ using PagedList;
 using PagedList.Mvc;
 using BusinessLayer.ValidationRules;
 using FluentValidation.Results;
+using DataAccessLayer.Abstract;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -27,6 +28,7 @@ namespace MvcProjeKampi.Controllers
 			string p = (string)Session["WriterMail"];
 			id = c.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
 			var writervalue = wm.GetByID(id);
+			ViewBag.WriterMail = p;
 			return View(writervalue);
 		}
 		[HttpPost]
@@ -37,7 +39,7 @@ namespace MvcProjeKampi.Controllers
 			if (results.IsValid)
 			{
 				wm.WriterUpdate(p);
-				return RedirectToAction("AllHeading","WriterPanel");
+				return RedirectToAction("AllHeading", "WriterPanel");
 			}
 			else
 			{

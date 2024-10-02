@@ -3,41 +3,76 @@
     ViewBag.Title = "WriterProfile";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
+<input type="hidden" value="@ViewBag.WriterMail" />
+@Html.HiddenFor(x => x.WriterID, new { @class = "form-control" })
+<link href="~/Content/WriterProfilePage.css" rel="stylesheet" />
+<div class="page-content page-container" id="page-content">
+    <div class="padding container"><br /><br />
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-12 col-md-12">
+                <div class="card">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25">
+                                    <img src="@Model.WriterImage" style="border-radius: 50%; height: 150px; width: 150px; object-fit: cover; " class="img-radius" alt="User-Profile-Image">
+                                </div>
+                                <h4 class="f-w-600">@Model.WriterName @Model.WriterSurName</h4>
+                                <p>@Model.WriterTitle</p>
+                                <a href="#" class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" style="font-size: 24px;"></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <h4 class="m-b-20 p-b-5 b-b-default f-w-600">@Model.WriterName Hakkında</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">
+                                            <b>E-Posta</b>
+                                            <h6 class="text-muted f-w-400">@Model.WriterMail</h6>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600"><b>Telefon Numarası</b></p>
+                                        <h6 class="text-muted f-w-400">@Model.WriterPhoneNumber</h6>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">
+                                            <b>Hakkında</b>
+                                            <h6 class="text-muted f-w-400">@Model.WriterAbout</h6>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600"><b>Cinsiyet</b></p>
+                                        @if (Model.WriterGender == "Erkek")
+                                        {
+                                            <h6 style="color:blue;" class="text-muted f-w-400 mdi mdi-gender-male">@Model.WriterGender</h6>
+                                        }
+                                        @if (Model.WriterGender == "Kadın")
+                                        {
+                                            <h6 style="color:deeppink;" class="text-muted f-w-400 mdi mdi-gender-female">@Model.WriterGender</h6>
+                                        }
+                                        @if (Model.WriterGender == null)
+                                        {
+                                            <h6 class="text-muted f-w-400">Belirtilmemiş</h6>
+                                        }
+                                    </div>
+                                </div><br /><br /><br />
+                                <div class="row" style="margin-top: auto;">
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-info w-100">Şifreyi Değiştir</a>
+                                    </div>
+                                </div>
 
-<h2>Profilinizi Düzenleyin</h2>
-@using (Html.BeginForm("WriterProfile", "WriterPanel", FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.HiddenFor(x => x.WriterID, new { @class = "form-control" })
-        <br />
-        @Html.Label("Yazar Adı")
-        @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterName)
-        <br />
-        @Html.Label("Yazar Soyadı")
-        @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterSurName)
-        <br />
-        @Html.Label("Yazar Mail")
-        @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterMail)
-        <br />
-        @Html.Label("Yazar Şifresi")
-        @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterPassword)
-        <br />
-        @Html.Label("Yazar Görsel Linki")
-        @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterImage)
-        <br />
-        @Html.Label("Yazar Ünvanı")
-        @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterTitle)
-        <br />
-        @Html.Label("Yazar Hakkında")
-        @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterAbout)
-        <br />
-        <button class="btn btn-success">Değişiklikleri Uygula</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-}
+</div>

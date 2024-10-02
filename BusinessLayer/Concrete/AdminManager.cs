@@ -38,6 +38,13 @@ namespace BusinessLayer.Concrete
 			return _adminDal.Get(x => x.AdminID == id);
 		}
 
+		public Admin GetByUser(Admin user)
+		{
+			return _adminDal.Get(x =>
+				(x.AdminUserName == user.AdminUserName || x.AdminMail == user.AdminMail) &&
+				x.AdminPassword == user.AdminPassword);
+		}
+
 		public List<Admin> GetList()
 		{
 			return _adminDal.List();
