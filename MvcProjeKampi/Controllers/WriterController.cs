@@ -58,29 +58,5 @@ namespace MvcProjeKampi.Controllers
 			}
 			return View();
 		}
-		[HttpGet]
-		public ActionResult EditWriter(int id)
-		{
-			var writervalue = wm.GetByID(id);
-			return View(writervalue);
-		}
-		[HttpPost]
-		public ActionResult EditWriter(Writer p)
-		{
-			ValidationResult results = writervalidator.Validate(p);
-			if (results.IsValid)
-			{
-				wm.WriterUpdate(p);
-				return RedirectToAction("Index");
-			}
-			else
-			{
-				foreach (var item in results.Errors)
-				{
-					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-				}
-			}
-			return View();
-		}
 	}
 }
